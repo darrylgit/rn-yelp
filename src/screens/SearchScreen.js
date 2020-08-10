@@ -9,22 +9,10 @@ const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
 
-  const filterResultsByPrice = (...prices) => {
-    if (prices.length === 1) {
-      return results.filter(result => result.price === prices[0]);
-    } else {
-      let output = prices
-        .map(price => {
-          return results.filter(result => {
-            console.log(result.price);
-            return result.price === price;
-          });
-        })
-        .flat();
-      console.log(output);
-      return output;
-    }
-  };
+  const filterResultsByPrice = (...prices) =>
+    prices
+      .map(price => results.filter(result => result.price === price))
+      .flat();
 
   return (
     <View>
