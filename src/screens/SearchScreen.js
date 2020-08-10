@@ -5,7 +5,7 @@ import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
 
@@ -20,11 +20,7 @@ const SearchScreen = ({ navigation }) => {
 
   const renderResultsList = (filteredResults, title) => {
     return filteredResults.length ? (
-      <ResultsList
-        results={filteredResults}
-        title={title}
-        navigation={navigation}
-      />
+      <ResultsList results={filteredResults} title={title} />
     ) : null;
   };
 
