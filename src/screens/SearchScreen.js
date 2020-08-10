@@ -14,16 +14,6 @@ const SearchScreen = () => {
       .map(price => results.filter(result => result.price === price))
       .flat();
 
-  const budgetResults = filterResultsByPrice("$");
-  const midRangeResults = filterResultsByPrice("$$");
-  const expensiveResults = filterResultsByPrice("$$$", "$$$$");
-
-  const renderResultsList = (filteredResults, title) => {
-    return filteredResults.length ? (
-      <ResultsList results={filteredResults} title={title} />
-    ) : null;
-  };
-
   return (
     <>
       <SearchBar
@@ -34,9 +24,15 @@ const SearchScreen = () => {
       {errorMessage ? <Text>{errorMessage}</Text> : null}
 
       <ScrollView>
-        {renderResultsList(budgetResults, "Cost Effective")}
-        {renderResultsList(midRangeResults, "Bit Pricier")}
-        {renderResultsList(expensiveResults, "Big Spender")}
+        <ResultsList
+          results={filterResultsByPrice("$")}
+          title='Cost Effective'
+        />
+        <ResultsList results={filterResultsByPrice("$$")} title='Bit Pricier' />
+        <ResultsList
+          results={filterResultsByPrice("$$$", "$$$$")}
+          title='Big Spender'
+        />
       </ScrollView>
     </>
   );
