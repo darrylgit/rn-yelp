@@ -4,9 +4,8 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
 import useResults from "../hooks/useResults";
 import ResultsList from "../components/ResultsList";
-import { exp } from "react-native-reanimated";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults();
 
@@ -21,7 +20,11 @@ const SearchScreen = () => {
 
   const renderResultsList = (filteredResults, title) => {
     return filteredResults.length ? (
-      <ResultsList results={filteredResults} title={title} />
+      <ResultsList
+        results={filteredResults}
+        title={title}
+        navigation={navigation}
+      />
     ) : null;
   };
 
